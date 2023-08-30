@@ -37,3 +37,36 @@ with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))
+
+from datetime import time, datetime
+st.subheader('Datetime slider')
+
+start_time = st.slider(
+     "When do you start?",
+     value=datetime(2020, 1, 1, 9, 30),
+     format="MM/DD/YY - hh:mm")
+st.write("Start time:", start_time)
+
+color = st.select_slider(
+    'Select a color of the rainbow',
+    options=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'])
+st.write('My favorite color is', color)
+
+import pandas as pd
+import numpy as np
+
+st.header('Line chart')
+
+with st.echo(code_location='above'):
+    chart_data = pd.DataFrame(
+        np.random.randn(20, 3),
+        columns=['a', 'b', 'c'])
+
+    st.line_chart(chart_data)
+
+import altair as alt
+
+c = alt.Chart(chart_data).mark_circle().encode(
+    x='a', y='c', size='b', color='c', tooltip=['a', 'b', 'c'])
+
+st.altair_chart(c, use_container_width=True)

@@ -22,6 +22,11 @@ options = st.multiselect(
      ['Yellow', 'Red'])
 
 st.write('You selected:', options)
+start_color, end_color = st.select_slider(
+    'Select a range of color wavelength',
+    options=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'],
+    value=('red', 'blue'))
+st.write('You selected wavelengths between', start_color, 'and', end_color)
 
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
@@ -45,13 +50,7 @@ with st.echo(code_location='below'):
         .encode(x='x:Q', y='y:Q'))
 
 from datetime import time, datetime
-st.subheader('Datetime slider')
-
-start_time = st.slider(
-     "When do you start?",
-     value=datetime(2020, 1, 1, 9, 30),
-     format="MM/DD/YY - hh:mm")
-st.write("Start time:", start_time)
+st.subheader(':blue[Datetime] :violet[slider]')
 
 color = st.select_slider(
     'Select a color of the rainbow',
@@ -75,4 +74,50 @@ import altair as alt
 c = alt.Chart(chart_data).mark_circle().encode(
     x='a', y='c', size='b', color='c', tooltip=['a', 'b', 'c'])
 
-st.altair_chart(c, use_container_width=True)
+st.altair_chart(c, use_container_width=True,theme=None)
+
+
+#from datetime import time, datetime
+st.header('st.slider')
+
+# Example 1
+
+st.subheader('Slider')
+
+age = st.slider('How old are you?', 0, 130, value = 25)
+st.write("I'm ", age, 'years old')
+
+# Example 2
+
+st.subheader('Range slider')
+
+values = st.slider(
+     'Select a range of values',
+     0.0, 100.0, (25.0, 75.0))
+st.write('Values:', values)
+
+# Example 3
+
+st.subheader('Range time slider')
+
+appointment = st.slider(
+     "Schedule your appointment:",
+     value=(time(11, 30), time(12, 45)))
+st.write("You're scheduled for:", appointment)
+
+# Example 4
+
+st.subheader('Datetime slider')
+
+
+start_time1 = st.slider(
+     "When do you start?",
+     value=datetime(2020, 1, 1, 9, 30),
+     format="MM/DD/YY - hh:mm")
+st.write("Start time:", start_time1)
+
+start_time2 = st.slider(
+     "When do you start?",
+     value=datetime(2020, 1, 1, 10, 30),
+     format="MM/DD/YY - hh:mm")
+st.write("Start time:", start_time2)

@@ -8,8 +8,8 @@
     "codespaces": {
       "openFiles": [
         "README.md",
-        "main.py"
-//       "streamlit_app.py"
+//        "main.py"
+       "streamlit_app.py"
       ]
     },
     "vscode": {
